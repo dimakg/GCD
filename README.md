@@ -34,7 +34,7 @@ The last merging step was performed by rbind() connecting train and test sets to
 
 5) The measurement columns during this step were named according to the file features.txt. Symbols '(' and ')' where deleted, '-' was replaced by'_'. The first and the last column names were added to describe subjects and labels. More information on the column names can be found in a CodeBook.md file (link to file here)
 
-6) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+6) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject. CHANGE
 
 
 
