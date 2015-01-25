@@ -1,6 +1,6 @@
-run_analysis <- function(x_test_loc="test/X_test.txt", y_test_loc="test/y_test.txt",
-                         subject_test_loc = "test/subject_test.txt", x_train_loc = "train/X_train.txt", 
-                         y_train_loc ="train/y_train.txt", subject_train_loc = "train/subject_train.txt", 
+run_analysis <- function(x_test_loc="X_test.txt", y_test_loc="y_test.txt",
+                         subject_test_loc = "subject_test.txt", x_train_loc = "X_train.txt", 
+                         y_train_loc ="y_train.txt", subject_train_loc = "subject_train.txt", 
                          features_loc= "features.txt"){
   
     ##getting list of all variables
