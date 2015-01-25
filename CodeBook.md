@@ -1,8 +1,6 @@
-The code book consists of two parts and includes names of the columns with descriptions for two data sets. First part for the data set with mean and standard deviation information. The second part for average of each variable for each activity and each subject.
+The code book includes the names of the columns with descriptions. The description of steps taken to clean and manipulate the data are in the README.md ( https://github.com/dimakg/GCD/blob/master/README.md )
 
-
-
-															PART I
+															
 - This data set contains only mean and 	standard deviation from the original data set.														
 - All features are normalized and bounded within [-1,1].
 - Prefixes 't' and 'f' in column names indicate time and frequency domain signals. 
