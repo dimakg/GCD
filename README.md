@@ -13,7 +13,7 @@ I. Steps performed for cleaning the data set.
 	
 That point to the location of provided training and test set files. By default function assumes that files are in your working directory.
 
-2) After providing file locations mentioned above, the numeric vector of needed columns was created. And as we need only mean and standard deviation data for our analysis the decision was to use grep() function that searched the file with list of features to create a vector with positions of the columns that contain required information (judging on the original data column names). The selection includes only strings with 'mean()' and 'std()' according to the initial README.txt:
+2) The numeric vector of needed columns is created form features.txt. And as we need only mean and standard deviation data for our analysis the decision was to use grep() function that searched the file with list of features to create a vector with positions of the columns that contain required information (judging on the original data column names). The selection includes only strings with 'mean()' and 'std()' according to the initial README.txt:
  
 "The set of variables that were estimated from these signals are: 
 mean(): Mean value
@@ -27,7 +27,7 @@ The last merging step was performed by rbind() connecting train and test sets to
 
 4) The measurement columns during this step were named according to the file features.txt. Symbols '(' and ')' where deleted, '-' was replaced by'_'. The first and the second column names were added to describe subjects and labels. More information on the column names can be found in a CodeBook.md file (https://github.com/dimakg/GCD/blob/master/CodeBook.md ) 
 
-This step was performed to make user activity information more descriptive. The second column of the data set is now a character vector instead of numeric:
+5) This step was performed to make user activity information more descriptive. The second column of the data set is now a character vector instead of numeric:
 	1 = WALKING
 	2 = WALKING_UPSTAIRS
 	3 = WALKING_DOWNSTAIRS
@@ -35,7 +35,7 @@ This step was performed to make user activity information more descriptive. The 
 	5 = STANDING
 	6 = LAYING
 
-5) A new tidy data set is created from the one that was merged. We use group_by() to group the data set by subject and activity. summarise_each() is used to apply mean() to each variable for each activity and subject. The resulting data frame is 180x81.
+6) A new tidy data set is created from the one that was merged. We use group_by() to group the data set by subject and activity. summarise_each() is used to apply mean() to each variable for each activity and subject. The resulting data frame is 180x81.
 
 
 
