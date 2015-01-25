@@ -30,10 +30,10 @@ run_analysis <- function(x_test_loc="test/X_test.txt", y_test_loc="test/y_test.t
     
     ##merging data
     ##start by merging training set with test labels and test subjects   
-    train <- cbind(subject_train_file, X_train_file, y_train_file) 
+    train <- cbind(subject_train_file,  y_train_file, X_train_file) 
     
     ##then merge test set
-    test <- cbind(subject_test_file, X_test_file, y_test_file)
+    test <- cbind(subject_test_file,  y_test_file, X_test_file)
     
     ##merge two data sets together
     merged_data<-rbind(train,test)
@@ -44,35 +44,40 @@ run_analysis <- function(x_test_loc="test/X_test.txt", y_test_loc="test/y_test.t
     rm(train,test)    
     
     
+    ##removing symbols like '(', ')' and'_'
+    feature_names <- gsub("\\()|\\)", "", feature_names)    
+    feature_names <- gsub("-", "_", feature_names)
+    
+    ##use feature_names variable created previously to name the colunms of the data set, plus add names for first and last column
+    names(merged_data)<-c("Subject", "Activ_type", as.vector(feature_names))
+    
+    
     ##changing entries in the last column to be more descriptive  
     for(i in 1: nrow(merged_data)){
-      check_var<- merged_data[i,81]
+      check_var<- merged_data$Activ_type[i]
       if(check_var == 1){            
-        merged_data[i,81] = "WALKING" 
+        merged_data$Activ_type[i] = "WALKING" 
         
       }else if(check_var==2){
-        merged_data[i,81] = "WALKING_UPSTAIRS"
+        merged_data$Activ_type[i] = "WALKING_UPSTAIRS"
         
       }else if(check_var==3){
-        merged_data[i,81] = "WALKING_DOWNSTAIRS"
+        merged_data$Activ_type[i] = "WALKING_DOWNSTAIRS"
         
       }else if(check_var==4){
-        merged_data[i,81] = "SITTING"
+        merged_data$Activ_type[i] = "SITTING"
         
       }else if(check_var==5){
-        merged_data[i,81] = "STANDING"
+        merged_data$Activ_type[i] = "STANDING"
         
       }else if(check_var==6){
-        merged_data[i,81] = "LAYING"
+        merged_data$Activ_type[i] = "LAYING"
       }
     }
     
-    ##use feature_names variable created previously to name the colunms of the data set, plus add names for first and last column
-    names(merged_data)<-c("Subject",as.vector(feature_names),"Activ_type")
-    
-    test_list <- list(merged_data=merged_data)
-    
-    print(ls(all.names=TRUE))
-    test_list
+    ## Form merged_data we create tidy data set with the average of 
+    ## each variable for each activity and each subject.
+    grouped_Data<- merged_data %>% group_by(Subject,Activ_type)
+    tData<- grouped_Data%>%summarise_each(funs(mean))
     
 }
