@@ -79,5 +79,4 @@ run_analysis <- function(x_test_loc="X_test.txt", y_test_loc="y_test.txt",
     ## each variable for each activity and each subject.
     grouped_Data<- merged_data %>% group_by(Subject,Activ_type)
     tData<- grouped_Data%>%summarise_each(funs(mean))
-    
 }
